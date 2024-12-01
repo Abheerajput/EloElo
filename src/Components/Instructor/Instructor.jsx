@@ -139,6 +139,30 @@ const Instructor = () => {
             </div>
             
             </div>
+            <div className="keen-slider__slide py-4" >
+         <div className=' bg-white  p-4 flex flex-col   justify-between shadow-lg rounded-lg mx-2'>
+              <img src={inst3} alt="" />
+              <h1 className='flex justify-center font-publicSans font-medium pt-3'>
+              Clara Dupont
+              </h1>
+              <p className='flex justify-center font-medium text-[15px] text-[#737373] pt-3 font-publicSans'>
+              Senior Instructor
+              </p>
+            </div>
+            
+            </div>
+            <div className="keen-slider__slide py-4" >
+         <div className=' bg-white  p-4 flex flex-col   justify-between shadow-lg rounded-lg mx-2'>
+              <img src={inst3} alt="" />
+              <h1 className='flex justify-center font-publicSans font-medium pt-3'>
+              Clara Dupont
+              </h1>
+              <p className='flex justify-center font-medium text-[15px] text-[#737373] pt-3 font-publicSans'>
+              Senior Instructor
+              </p>
+            </div>
+            
+            </div>
     </div>
 
     <div className='flex justify-center pt-6'>

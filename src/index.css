@@ -20,3 +20,13 @@ code {
   width: 100% !important;
   opacity: 1;
 }
+.keen-slider__slide{
+  min-width: 204.1px !important;
+    max-width: 384.1px !important;
+  }
+
+  /* .keen-slider__slide1{
+    min-width: 600.1px !important;
+    max-width: 800.1px !important;
+    min-height: 400px !important;
+  } */

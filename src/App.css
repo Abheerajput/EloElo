@@ -40,6 +40,10 @@
     transform: rotate(360deg);
   }
 }
+.keen-slider__slide{
+  min-width: 204.1px !important;
+    max-width: 384.1px !important;
+  }
 
 
 
