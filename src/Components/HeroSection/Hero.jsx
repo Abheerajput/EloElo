@@ -5,7 +5,7 @@ import img2 from "../../assets/Svg/vector.svg"
 import img3 from "../../assets/Svg/lessonicon.svg"
 const Hero = () => {
   return (
-    <div className=' bg-white xs:pt-6 sm:pt-8 md:pt-8 lg:pt-8 lg:pb-12 xl:py-10 md:py-6 '>
+    <div className=' bg-white xs:pt-14 sm:pt-8 md:pt-8 lg:pt-8 lg:pb-12 xl:py-10 md:py-6 '>
         <div className='w-full flex xs:flex-col items-center'>
             <div className='w-1/2 xs:w-full relative  justify-between'>
 <img src={img1} alt=""  className=''/>

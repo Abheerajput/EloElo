@@ -7,6 +7,7 @@ import Achievement from '../Achievments/Achievments'
 import Navbar from './Navbar'
 import Teacher from '../JoinTeacher/Teacher'
 import Feedback from '../Feedback/Feedback'
+import Footer from '../Footer/Footer'
 
 const Main = () => {
   return (
@@ -15,9 +16,11 @@ const Main = () => {
 <Hero/>
       <Choose />
       <Instructor />
-      <Feedback/>
+    
       <Achievement />
+      <Feedback/>
       <Teacher/>
+      <Footer/>
     </div>
   )
 }
