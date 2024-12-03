@@ -33,6 +33,7 @@ function App() {
                         <Route path="/dashboard" element={<Navigate to="/login" />} />
                     </>
                 )}
+                {/* Common Route */}
                 <Route path="/" element={<Main />} />
 
                 <Route path="/verify" element={<VerifyEmail />} />

@@ -18,7 +18,6 @@ const apiService = async (url, method, data = {}, headers = {}) => {
             toast.error(response.data.message || 'An error occurred. Please try again.');
         }
     } catch (error) {
-        toast.error(error.response?.data?.message || 'An error occurred. Please try again.');
         throw error;
     }
 };

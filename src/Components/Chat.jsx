@@ -220,9 +220,9 @@ const Chat = () => {
               </div>
             </div>
           </div>
-        <div className="border-none px-4 pt-4 h-[80%]">
+        <div className=" px-2 pt-4 h-[80%]">
         
-          <div className="h-full overflow-y-auto p-3" ref={ref}>
+          <div className="h-full border overflow-y-auto p-3" ref={ref}>
             {messages.map((message, index) => (
               <div
                 key={index}
