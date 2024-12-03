@@ -3,16 +3,17 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-white py-10">
-      <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className=" xs:mx-0  xs:flex-wrap px-4 grid xs:flex xs:w-full  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Contact Us Section */}
-        <div>
+        <div className="flex xs:w-[80%]  flex-col gap-2"> 
           <h2 className="text-2xl font-bold text-[#007ABF]">Elo <span className="text-red-500">Elo</span></h2>
-          <p className="text-sm text-gray-600 mt-4">
-            <strong>Contact Us</strong><br />
-            Call: +352 123 456 789<br />
-            Address: 45 Language Street, Luxembourg City, Luxembourg<br />
-            Email: <a href="mailto:support@eloeloplatform.com" className="text-blue-500">support@eloeloplatform.com</a>
+          <p className="text-md font-publicSans font-medium ">  <strong>Contact Us</strong></p>
+          <p className="text-md font-publicSans font-medium "> Call: +352 123 456 789</p>
+          <p className="text-md font-publicSans font-medium ">  Address: 45 Language Street,</p>
+          <p  className="text-md font-publicSans font-medium "> Luxembourg City, Luxembourg</p>
+          <p className="text-md font-publicSans font-medium ">Email: <a href="mailto:support@eloeloplatform.com" className="text-blue-500">support@eloeloplatform.com</a>
           </p>
+          
           <div className="flex space-x-4 mt-4">
             <a href="#" className="text-blue-500">
               <i className="fab fa-facebook fa-lg"></i>
@@ -27,7 +28,7 @@ const Footer = () => {
         </div>
 
         {/* Explore Section */}
-        <div>
+        <div className="">
           <h3 className="text-lg font-semibold mb-4">Explore</h3>
           <ul className="space-y-2">
             <li><a href="#" className="text-gray-600 hover:text-blue-500">Home</a></li>
@@ -39,7 +40,7 @@ const Footer = () => {
         </div>
 
         {/* Language Section */}
-        <div>
+        <div className="">
           <h3 className="text-lg font-semibold mb-4">Language</h3>
           <ul className="space-y-2">
             <li><a href="#" className="text-gray-600 hover:text-blue-500">English</a></li>
