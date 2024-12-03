@@ -11,7 +11,7 @@ const  Achievement = () => {
  
 
   return (
-    <div className=' bg-[white] xs:pt-6  lg:py-12 xl:py-10 md:py-6'>
+    <div className=' bg-[#F9F9F9] xs:pt-6  lg:py-12 xl:py-10 md:py-6'>
       <div className='relative '>
         <h1 className='text-[35px] font-semibold font-publicSans'>Our <span className='text-[#00A3E0] '>Achievement</span></h1>
         <img src={img} alt="" className='absolute ps-16 ' />

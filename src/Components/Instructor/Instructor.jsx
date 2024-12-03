@@ -54,13 +54,13 @@ const Instructor = () => {
         slides: { perView: 1, spacing: 10 },
       },
       "(min-width: 768px)": {
-        slides: { perView: 2, spacing: 15 },
+        slides: { perView: 2, spacing: 5 },
       },
       "(min-width: 1024px)": {
-        slides: { perView: 3, spacing: 20 },
+        slides: { perView: 3, spacing: 5 },
       },
       "(min-width: 1280px)": {
-        slides: { perView: 4, spacing: 25 },
+        slides: { perView: 3, spacing: 5 },
       },
     },
   });
@@ -68,7 +68,7 @@ const Instructor = () => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width >= 1280) setPerView(4);
+      if (width >= 1280) setPerView(3);
       else if (width >= 1024) setPerView(3);
       else if (width >= 768) setPerView(2);
       else setPerView(1);
@@ -91,19 +91,20 @@ const Instructor = () => {
         </p>
       </div>
 
-      <div className="relative py-6">
-        <div ref={sliderRef} className="keen-slider  xs:px-0 px-5">
+      <div className="relative py-6 pl-6">
+        <div ref={sliderRef} className="keen-slider   px-10 xs:px-0">
           {instructors.map((instructor, idx) => (
             <div
               key={idx}
-              className="keen-slider__slide keen-slider_slide2  py-4 flex justify-center items-center"
+              className="keen-slider__slide keen-slider_slide2   flex justify-center items-center"
             >
 
-              <div className="bg-white xs:min-w-[50%] min-h-full min-w-full p-4 flex flex-col justify-center shadow-lg rounded-lg mx-2 max-w-xs">
+              <div className="bg-white  max-w-[400px] p-3 flex flex-col justify-center  ">
+                <div className="">
                 <img
                   src={instructor.imageUrl}
                   alt={instructor.name}
-                  className="   object-cover "
+                  className=" w-60 object-cover "
                 />
                 <h1 className="text-center font-publicSans font-medium pt-3">
                   {instructor.name}
@@ -111,13 +112,15 @@ const Instructor = () => {
                 <p className="text-center font-medium text-[15px] text-[#737373] pt-3 font-publicSans">
                   {instructor.role}
                 </p>
+                </div>
+               
               </div>
             </div>
           ))}
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-end gap-5 pt-6">
+        <div className="flex justify-end gap-3 pt-6">
           <button
             onClick={() => instanceRef.current?.prev()}
             className="bg-[#00A3E0] text-white px-4 py-2 rounded-md"

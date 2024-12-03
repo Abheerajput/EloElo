@@ -99,7 +99,7 @@ const Feedback = () => {
   ];
 
   return (
-    <div>
+    <div className='bg-[#F9F9F9]'>
       <div className="relative">
         <h1 className="text-[35px] font-semibold font-publicSans">
           Student<span className="text-[#00A3E0]"> Feedback</span>
@@ -110,17 +110,17 @@ const Feedback = () => {
         </p>
       </div>
 
-      <div className="relative py-6">
+      <div className="relative  py-6">
         <div ref={sliderRef} className="keen-slider">
           {feedbackData.map((feedback, index) => (
-            <div className="keen-slider__slide keen-slider__slide1  py-4" key={index}>
-              <div className="bg-white p-4 justify-between shadow-lg rounded-lg mx-2">
-                <div className="p-6">
+            <div className="keen-slider__slide keen-slider__slide1   " key={index}>
+              <div className="p-4 justify-between">
+                <div className="p-6   rounded-xl shadow-md">
                   <span className="flex gap-6">
                     <img
                       src={feedback.image}
                       alt="User profile"
-                      className="w-12 h-12 object-cover rounded-full border-2 border-gray-300 shadow-lg"
+                      className="w-12 h-12 object-cover rounded-full border-2 shadow-lg"
                     />
                     <span className="flex flex-col">
                       <h1 className="text-[#363A3D] font-publicSans font-medium text-[16px]">{feedback.name}</h1>

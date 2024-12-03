@@ -2,7 +2,7 @@ import React from 'react'
 import img from "../../assets/Svg/teacher.svg"
 const Teacher = () => {
   return (
-    <div>
+    <div className='bg-[#F5FCFF]'>
 <div className='w-full xs:flex-col flex items-center'>
     <div className='w-1/2 xs:w-full'>
     <img src={img} alt="" />

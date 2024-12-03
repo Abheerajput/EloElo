@@ -11,13 +11,18 @@ const Navbar = () => {
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
+  const token = localStorage.getItem("token"); // Check if the token exists
+const handleLogout = () => {
+  localStorage.removeItem("token"); 
+  window.location.href = '/login'; // Redirect to login page
 
+}
   const toggleMenu = () => {
     setIsOpen(!isOpen); // Toggle the sidebar
   };
 
   return (
-    <div className="border w-full mt-6 h-20 border-b border-l-0 border-r-0 border-t-0">
+    <div className=" w-full mt-6 h-20 border-b-2 border-l-0 border-r-0 border-t-0">
       <div className="flex justify-between items-center px-4">
         {/* Logo Section */}
         <div className="flex-shrink-0">
@@ -52,7 +57,7 @@ const Navbar = () => {
           <select
             value={language}
             onChange={handleLanguageChange}
-            className="border-0 px-2 py-2 text-gray-700 rounded-md"
+            className="border-0  gap-2 py-2 text-gray-700 rounded-md"
           >
             <option value="en" className="text-[#6D737A]">
               English
@@ -67,17 +72,34 @@ const Navbar = () => {
               Deutsch
             </option>
           </select>
-
-<Link to="/login">
-<button className="px-6 py-2 rounded-lg items-center flex gap-2 text-[#6D737A] font-medium font-publicSans">
-            <img src={lock} alt="lock" /> Login
-          </button>
-</Link>
-         <Link to="/signup">
-         <button className="px-6 py-2 text-white rounded-lg bg-[#00A3E0]">
-            Get Started for Free
-          </button>
-         </Link>
+          {token ? (
+    <>
+      <button
+        onClick={handleLogout}
+        className="px-6 py-2 rounded-lg items-center flex gap-2 text-[#6D737A] font-medium font-publicSans"
+      >
+        Logout
+      </button>
+      <Link to="/chat">
+        <button className="px-6 py-2 text-white rounded-lg bg-[#00A3E0]">
+          Start Chat
+        </button>
+      </Link>
+    </>
+  ) : (
+    <>
+      <Link to="/login">
+        <button className="px-6 py-2 rounded-lg items-center flex gap-2 text-[#6D737A] font-medium font-publicSans">
+          <img src={lock} alt="lock" /> Login
+        </button>
+      </Link>
+      <Link to="/signup">
+        <button className="px-6 py-2 text-white rounded-lg bg-[#00A3E0]">
+          Get Started for Free
+        </button>
+      </Link>
+    </>
+  )}
         
         </div>
       </div>
@@ -130,17 +152,34 @@ const Navbar = () => {
                 Deutsch
               </option>
             </select>
-<Link to="/login">
-<button className="px-6 py-2 rounded-lg items-center flex gap-2 text-[#6D737A] font-medium font-publicSans">
-              <img src={lock} alt="lock" /> Login
-            </button>
-</Link>
-           
-<Link to="/signup">
-<button className="px-6  xs:w-2/3 py-2 text-white rounded-lg bg-[#00A3E0]">
-              Get Started for Free
-            </button>
-</Link>
+            {token ? (
+    <>
+      <button
+        onClick={handleLogout}
+        className="px-6 py-2 rounded-lg items-center flex gap-2 text-[#6D737A] font-medium font-publicSans"
+      >
+        Logout
+      </button>
+      <Link to="/chat">
+        <button className="px-6 py-2 text-white rounded-lg bg-[#00A3E0]">
+          Start Chat
+        </button>
+      </Link>
+    </>
+  ) : (
+    <>
+      <Link to="/login">
+        <button className="px-6 py-2 rounded-lg items-center flex gap-2 text-[#6D737A] font-medium font-publicSans">
+          <img src={lock} alt="lock" /> Login
+        </button>
+      </Link>
+      <Link to="/signup">
+        <button className="px-6 py-2 text-white rounded-lg bg-[#00A3E0]">
+          Get Started for Free
+        </button>
+      </Link>
+    </>
+  )}
           
           </nav>
         </div>
