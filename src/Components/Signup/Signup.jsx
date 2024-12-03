@@ -26,7 +26,7 @@ const Signup = () => {
         name: '',
         email: '',
         password: '',
-        learningGoals: '',
+        learningGoals: 'null',
     });
 
     const [isLoading, setIsLoading] = useState(false); // State to track loader visibility
@@ -99,22 +99,22 @@ const Signup = () => {
             setError('You must agree to the Terms and Conditions');
             return;
           }
-        const { name, email, password, learningGoals } = formData;
+        const { name, email, password, } = formData;
 
-        if (!name || !email || !password || !learningGoals) {
+        if (!name || !email || !password) {
             toast.error("All fields must be filled!");
             return;
         }
 
-        setIsLoading(true); // Show loader when submitting
+        setIsLoading(true); 
 
         try {
             const data = {
                 name,
                 email,
                 password,
-                learningGoals,
                 language: selectedLanguage.value,
+                learningGoals: "null",
             };
             const response = await apiService(`${BASE_URL}/auth/register`, 'POST', data);
         
@@ -125,7 +125,7 @@ const Signup = () => {
                     name: '',
                     email: '',
                     password: '',
-                    learningGoals: '',
+                    learningGoals: 'null',
                 });
             } else {
                 toast.error(response.message);
@@ -225,7 +225,7 @@ const Signup = () => {
                             className="mt-2"
                         />
                     </div>
-                    <div>
+                    {/* <div>
     <label htmlFor="learningGoals" className="block text-[#A3A3A3] xs:text-[14px] font-publicSans">
         Set Learning Goals and Preferences
     </label>
@@ -242,7 +242,7 @@ const Signup = () => {
         <option value="Public Speaking">Public Speaking</option>
         <option value="Teamwork">Teamwork</option>
     </select>
-</div>
+</div> */}
 
 <div className="flex gap-1 pt-6">
         <input
