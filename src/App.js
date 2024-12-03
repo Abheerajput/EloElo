@@ -8,24 +8,21 @@ import ForgotPassword from "./Components/Forgotpassword/ForgotPassword";
 import VerifyEmail from "./Components/VerifyEmail/VerifyEmail";
 
 function App() {
-    const token = localStorage.getItem("token"); // Check if the token exists
+    const token = localStorage.getItem("token"); 
 
     return (
         <Router>
             <Routes>
-                {/* Conditional Rendering Based on Token */}
                 {token ? (
                     <>
                         <Route path="/chat" element={<Chat />} />
                         <Route path="/profile" element={<h1>Profile Page</h1>} />
                         <Route path="/dashboard" element={<h1>Dashboard Page</h1>} />
-                        {/* Redirect public routes to Chat */}
                         <Route path="/signup" element={<Navigate to="/" />} />
                         <Route path="/login" element={<Navigate to="/chat" />} />
                         <Route path="/forgot-password" element={<Navigate to="/" />} />
                     </>
                 ) : (
-                    // Routes accessible when token does not exist
                     <>
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/login" element={<Login />} />
@@ -36,7 +33,6 @@ function App() {
                         <Route path="/dashboard" element={<Navigate to="/login" />} />
                     </>
                 )}
-                {/* Common Route */}
                 <Route path="/" element={<Main />} />
 
                 <Route path="/verify" element={<VerifyEmail />} />
