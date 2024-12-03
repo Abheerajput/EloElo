@@ -32,8 +32,8 @@ module.exports = {
     },
   },
   plugins: [
-    flowbite, // Correctly added as an array item
-    require('tailwindcss'), // Include Tailwind plugin
-    require('autoprefixer'), // Include autoprefixer plugin
+    flowbite, 
+    require('tailwindcss'), 
+    require('autoprefixer'), 
   ],
 };
