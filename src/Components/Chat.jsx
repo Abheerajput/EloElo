@@ -3,9 +3,9 @@ import io from "socket.io-client";
 import image from "../../src/assets/images.png";
 import image2 from "../../src/assets/logo.png";
 import mic from "../../src/assets/mic.png";
+import { Link } from "react-router-dom";
 
 const socket = io.connect("https://tsdevadmin.testenvapp.com");
-// const socket = io.connect("http://localhost:4000");
 
 const Chat = () => {
   const [language, setLanguage] = useState("en");
@@ -13,14 +13,27 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const ref = useRef();
+  const [menuVisible, setMenuVisible] = useState(false);
+
   const [isListening, setIsListening] = useState(false);
   const shouldFetch = useRef(true);
 
-  function formatQuizOrReturnNormal(response) {
-    const quizQuestionPattern = /^\d+\.\s.*$/m;
-    const quizOptionPattern = /^[A-D]\.\s.*$/m;
-    const sentencePattern = /^\d+\.\s".*"\s\(.+\)$/m;
 
+
+  const showMenu = () => setMenuVisible(true); // Show menu on hover
+  const hideMenu = () => setMenuVisible(false); // Hide menu when hover ends
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove token from localStorage
+    alert("Logged out successfully!"); // Optional: Notify the user
+  };
+  function formatQuizOrReturnNormal(response) {
+    // Patterns for detection
+    const quizQuestionPattern = /^\d+\.\s.*$/m; // Detects "1. Question" format
+    const quizOptionPattern = /^[A-D]\.\s.*$/m; // Detects "A. Option" format
+    const sentencePattern = /^\d+\.\s".*"\s\(.+\)$/m; // Detects sentence structure like "Ech huelen eng _____." (I am taking a _____.)
+
+    // Check for standard quiz format
     if (
       quizQuestionPattern.test(response) &&
       quizOptionPattern.test(response)
@@ -28,10 +41,12 @@ const Chat = () => {
       return `<pre>${response}</pre>`;
     }
 
+    // Check for sentence-based quiz format
     if (quizQuestionPattern.test(response) && sentencePattern.test(response)) {
       return `<pre>${response}</pre>`;
     }
 
+    // If no specific format detected, return as is
     return response;
   }
 
@@ -53,9 +68,8 @@ const Chat = () => {
       setInput("");
     }
   };
-
   useEffect(() => {
-    socket.on("question-response", (data) => {
+    const handleResponse = (data) => {
       const resp = formatQuizOrReturnNormal(data);
       console.log(data);
       console.log(resp);
@@ -67,12 +81,63 @@ const Chat = () => {
           timestamp: new Date().toLocaleTimeString(),
         },
       ]);
+    };
+  
+    socket.on("connect", () => {
+      console.log("Socket connected with ID:", socket.id);
+      if (shouldFetch.current) {
+        shouldFetch.current = false; // Ensure the message is only sent once
+        socket.emit("ask-question", "hello");
+      }
     });
-
+  
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected.");
+    });
+  
+    // Add listener for "question-response"
+    socket.on("question-response", handleResponse);
+  
+    // Cleanup listener on component unmount
     return () => {
-      socket.off("question-response");
+      socket.off("question-response", handleResponse);
+      socket.off("connect");
+      socket.off("disconnect");
     };
   }, []);
+  
+
+  // useEffect(() => {
+  //     socket.on("connect", () => {
+  //     console.log("Socket connected with ID:", socket.id);
+  //     socket.emit("ask-question","hello");
+
+  //   });
+  
+  //   socket.on("disconnect", () => {
+  //     console.log("Socket disconnected.");
+  //   });
+  
+
+  //   socket.on("question-response", (data) => {
+  //     const resp = formatQuizOrReturnNormal(data);
+  //     console.log(data);
+  //     console.log(resp);
+  //     setMessages((prevMessages) => [
+  //       ...prevMessages,
+  //       {
+  //         text: resp,
+  //         user: "AI",
+  //         timestamp: new Date().toLocaleTimeString(),
+  //       },
+  //     ]);
+  //   });
+
+  //   return () => {
+  //     socket.off("question-response");
+  //   };
+  // }, []);
+
 
   let sidebarData = [
     {
@@ -154,17 +219,17 @@ const Chat = () => {
     recognition.start();
   };
 
-  useEffect(() => {
-    if (shouldFetch.current) {
-      shouldFetch.current = false;
-      let message = `<p>Hello! I am your AI assistant, Eloelo. What is your native language?</p>`;
-      setMessages([{
-        text: message,
-        user: "AI",
-        timestamp: new Date().toLocaleTimeString(),
-      }]);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (shouldFetch.current) {
+  //     shouldFetch.current = false;
+  //     let message = `<p>Hello! I am your AI assistant, Eloelo. What is your native language?</p>`;
+  //     setMessages([{
+  //       text: message,
+  //       user: "AI",
+  //       timestamp: new Date().toLocaleTimeString(),
+  //     }]);
+  //   }
+  // }, []);
 
   return (
     <div className="flex w-full h-screen">
@@ -211,13 +276,40 @@ const Chat = () => {
                 </select>
               </div>
 
-              <div className="border rounded-full p-1 overflow-hidden">
-                <img
-                  src={image}
-                  className="w-8 h-8 object-cover rounded-full"
-                  alt="profile"
-                />
-              </div>
+              <div
+      className="relative"
+      onMouseEnter={showMenu} // Show menu on hover
+      onMouseLeave={hideMenu} // Hide menu on mouse leave
+    >
+      {/* Profile Image */}
+      <div className="border rounded-full p-1 overflow-hidden cursor-pointer">
+        <img
+          src={image}
+          className="w-8 h-8 object-cover rounded-full"
+          alt="profile"
+        />
+      </div>
+
+      {/* Dropdown Menu */}
+      {menuVisible && (
+        <div className="absolute right-0  w-40 bg-white  rounded-lg shadow-lg">
+          <Link to="/">
+          <button
+            className="block w-full text-left px-4 py-2 hover:bg-gray-100" >
+            Profile
+          </button>
+          </Link>
+        
+          <button
+            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
+
             </div>
           </div>
         <div className=" px-2 pt-4 h-[80%]">
