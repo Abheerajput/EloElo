@@ -11,7 +11,7 @@ const NoteState = (props) => {
 
     // Connect to WebSocket server
     useEffect(() => {
-        const newSocket = io("http://localhost:4000" , { transports: ["websocket"]  , auth : {
+        const newSocket = io("https://tsdevadmin.testenvapp.com" , { transports: ["websocket"]  , auth : {
             token : localStorage.getItem('token')
         }}); // replace with your WebSocket URL
         console.log(`newSocket ${newSocket?.connected}`)
