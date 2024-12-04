@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-white py-10">
-      <div className=" xs:mx-0  xs:flex-wrap px-4 grid xs:flex xs:w-full  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className=" xs:mx-0  xs:flex-wrap px-4 grid xs:flex xs:w-full  grid-cols-1 md:grid-cols-4 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div className="flex xs:w-[80%]  flex-col gap-2"> 
           <h2 className="text-2xl font-bold text-[#007ABF]">Elo <span className="text-red-500">Elo</span></h2>
           <p className="text-md font-publicSans font-medium ">  <strong>Contact Us</strong></p>
