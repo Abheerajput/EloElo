@@ -88,7 +88,7 @@ const Login = () => {
               Email
             </label>
             <input
-              type="text"
+              type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -97,13 +97,10 @@ const Login = () => {
             />
           </div>
           <div>
-            <label
-              htmlFor="password"
-              className="block text-[#A3A3A3] xs:text-[15px] font-publicSans"
-            >
-              Password
-            </label>
-            <input
+    <label htmlFor="password" className="block text-[#A3A3A3] xs:text-[14px] font-publicSans">
+        Password
+    </label>
+    <input
               type="password"
               id="password"
               value={password}
@@ -111,7 +108,11 @@ const Login = () => {
               placeholder="Must be at least 8 characters"
               className="w-full mt-2 ps-4 text-[#595C5F] font-medium rounded-lg py-2 border-2"
             />
-          </div>
+    {password && password.length < 8 && (
+        <p className="text-red-500 text-sm">Password must be at least 8 characters long.</p>
+    )}
+</div>
+         
           <div className="pt-2 flex justify-end">
             <Link
               to="/forgot-password"
