@@ -4,7 +4,8 @@ import image from "../../src/assets/images.png";
 import image2 from "../../src/assets/logo.png";
 import mic from "../../src/assets/mic.png";
 import { Link } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const socket = io.connect("https://tsdevadmin.testenvapp.com");
 
 const Chat = () => {
@@ -24,8 +25,9 @@ const Chat = () => {
   const hideMenu = () => setMenuVisible(false); // Hide menu when hover ends
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token from localStorage
-    alert("Logged out successfully!"); // Optional: Notify the user
+    localStorage.removeItem("token"); 
+    window.location.reload()
+    toast.success("Logged out successfully!"); // Optional: Notify the user
   };
   function formatQuizOrReturnNormal(response) {
     // Patterns for detection
@@ -233,6 +235,7 @@ const Chat = () => {
 
   return (
     <div className="flex w-full h-screen">
+         <ToastContainer />
       <div className="w-2/12 p-3 overflow-y-auto">
         <div className="font-bold text-xl">New chat here</div>
         <div>
