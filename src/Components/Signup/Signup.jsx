@@ -99,10 +99,15 @@ const Signup = () => {
             setError('You must agree to the Terms and Conditions');
             return;
           }
+
         const { name, email, password, } = formData;
 
         if (!name || !email || !password) {
             toast.error("All fields must be filled!");
+            return;
+        }
+        if (password.length < 8) {
+            toast.error("Password must be at least 8 characters long!");
             return;
         }
 
