@@ -15,11 +15,11 @@ function App() {
             <Routes>
                 {token ? (
                     <>
-                     
+                        <Route path="/chat" element={<Chat />} />
                         <Route path="/profile" element={<h1>Profile Page</h1>} />
                         <Route path="/dashboard" element={<h1>Dashboard Page</h1>} />
                         <Route path="/signup" element={<Navigate to="/" />} />
-                        {/* <Route path="/login" element={<Navigate to="/chat" />} /> */}
+                        <Route path="/login" element={<Navigate to="/chat" />} />
                         <Route path="/forgot-password" element={<Navigate to="/" />} />
                     </>
                 ) : (
@@ -28,14 +28,14 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/forgot-password" element={<ForgotPassword />} />
                         {/* Redirect protected routes to Login */}
-                        {/* <Route path="/chat" element={<Navigate to="/login" />} /> */}
-                        {/* <Route path="/profile" element={<Navigate to="/login" />} /> */}
+                        <Route path="/chat" element={<Navigate to="/login" />} />
+                        <Route path="/profile" element={<Navigate to="/login" />} />
                         <Route path="/dashboard" element={<Navigate to="/login" />} />
                     </>
                 )}
                 {/* Common Route */}
                 <Route path="/" element={<Main />} />
-                <Route path="/chat" element={<Chat />} />
+
                 <Route path="/verify" element={<VerifyEmail />} />
             </Routes>
         </Router>
